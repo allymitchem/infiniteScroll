@@ -30,9 +30,6 @@ function displayPhotos(){
         });
         // Create image for photo
         const img = document.createElement('img');
-        // img.setAttribute('src', photo.urls.regular);
-        // img.setAttribute('alt', photo.alt_description);
-        // img.setAttribute('title', photo.alt_description);
         setAttribute(img, {
             src: photo.urls.regular,
             alt: photo.alt_description,
@@ -56,6 +53,14 @@ async function getPhotos(){
         // Catch error here
     }
 }
+
+// Check to see if scrolling near bottom of page, load more photos
+window.addEventListener('scroll', () => {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000){
+        getPhotos();
+        console.log("load more")
+    }
+});
 
 // On Load
 getPhotos();
